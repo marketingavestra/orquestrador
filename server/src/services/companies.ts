@@ -114,7 +114,8 @@ export function companyService(db: Db) {
       .leftJoin(companyLogos, eq(companyLogos.companyId, companies.id));
   }
 
-  function deriveIssuePrefixBase(name: string) {
+  function deriveIssuePrefixBase(name: string, explicitPrefix?: string) {
+    if (explicitPrefix) return explicitPrefix.toUpperCase().replace(/[^A-Z0-9]/g, "");
     const normalized = name.toUpperCase().replace(/[^A-Z]/g, "");
     return normalized.slice(0, 3) || ISSUE_PREFIX_FALLBACK;
   }
@@ -137,8 +138,8 @@ export function companyService(db: Db) {
       && constraint === "companies_issue_prefix_idx";
   }
 
-  async function createCompanyWithUniquePrefix(data: typeof companies.$inferInsert) {
-    const base = deriveIssuePrefixBase(data.name);
+  async function createCompanyWithUniquePrefix(data: typeof companies.$inferInsert & { issuePrefix?: string }) {
+    const base = deriveIssuePrefixBase(data.name, data.issuePrefix);
     let suffix = 1;
     while (suffix < 10000) {
       const candidate = `${base}${suffixForAttempt(suffix)}`;

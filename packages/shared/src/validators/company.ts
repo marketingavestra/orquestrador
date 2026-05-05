@@ -18,6 +18,7 @@ export const createCompanySchema = z.object({
   description: z.string().optional().nullable(),
   budgetMonthlyCents: z.number().int().nonnegative().optional().default(0),
   attachmentMaxBytes: attachmentMaxBytesSchema.optional(),
+  issuePrefix: z.string().min(1).max(32).regex(/^[A-Z0-9]+$/, "issuePrefix must be uppercase letters and digits only").optional(),
 });
 
 export type CreateCompany = z.infer<typeof createCompanySchema>;

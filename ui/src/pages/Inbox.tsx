@@ -1878,7 +1878,7 @@ export function Inbox() {
           <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
           <Input
             type="search"
-            placeholder="Search inbox…"
+            placeholder="Pesquisar..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={(e) => {
@@ -1908,14 +1908,14 @@ export function Inbox() {
             items={[
               {
                 value: "mine",
-                label: "Mine",
+                label: "Minhas",
               },
               {
                 value: "recent",
-                label: "Recent",
+                label: "Recentes",
               },
-              { value: "unread", label: "Unread" },
-              { value: "all", label: "All" },
+              { value: "unread", label: "Não lidas" },
+              { value: "all", label: "Todas" },
             ]}
           />
         </Tabs>
@@ -1925,7 +1925,7 @@ export function Inbox() {
             <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
             <Input
               type="search"
-              placeholder="Search inbox…"
+              placeholder="Pesquisar..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => {
@@ -2026,12 +2026,12 @@ export function Inbox() {
                 onClick={() => setShowMarkAllReadConfirm(true)}
                 disabled={markAllReadMutation.isPending}
               >
-                {markAllReadMutation.isPending ? "Marking…" : "Mark all as read"}
+                {markAllReadMutation.isPending ? "Marcando…" : "Marcar tudo como lido"}
               </Button>
               <Dialog open={showMarkAllReadConfirm} onOpenChange={setShowMarkAllReadConfirm}>
                 <DialogContent className="sm:max-w-md">
                   <DialogHeader>
-                    <DialogTitle>Mark all as read?</DialogTitle>
+                    <DialogTitle>Marcar tudo como lido?</DialogTitle>
                     <DialogDescription>
                       This will mark {unreadIssueIds.length} unread {unreadIssueIds.length === 1 ? "item" : "items"} as read.
                     </DialogDescription>
@@ -2046,7 +2046,7 @@ export function Inbox() {
                         markAllReadMutation.mutate(unreadIssueIds);
                       }}
                     >
-                      Mark all as read
+                      Marcar tudo como lido
                     </Button>
                   </DialogFooter>
                 </DialogContent>
@@ -2067,12 +2067,12 @@ export function Inbox() {
               <SelectValue placeholder="Category" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="everything">All categories</SelectItem>
-              <SelectItem value="issues_i_touched">My recent issues</SelectItem>
-              <SelectItem value="join_requests">Join requests</SelectItem>
-              <SelectItem value="approvals">Approvals</SelectItem>
-              <SelectItem value="failed_runs">Failed runs</SelectItem>
-              <SelectItem value="alerts">Alerts</SelectItem>
+              <SelectItem value="everything">Todas as categorias</SelectItem>
+              <SelectItem value="issues_i_touched">Minhas tarefas recentes</SelectItem>
+              <SelectItem value="join_requests">Pedidos de entrada</SelectItem>
+              <SelectItem value="approvals">Aprovações</SelectItem>
+              <SelectItem value="failed_runs">Execuções falhas</SelectItem>
+              <SelectItem value="alerts">Alertas</SelectItem>
             </SelectContent>
           </Select>
 
@@ -2082,12 +2082,12 @@ export function Inbox() {
               onValueChange={(value) => updateAllApprovalFilter(value as InboxApprovalFilter)}
             >
               <SelectTrigger className="h-8 w-[170px] text-xs">
-                <SelectValue placeholder="Approval status" />
+                <SelectValue placeholder="Status de aprovação" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All approval statuses</SelectItem>
-                <SelectItem value="actionable">Needs action</SelectItem>
-                <SelectItem value="resolved">Resolved</SelectItem>
+                <SelectItem value="all">Todos os status</SelectItem>
+                <SelectItem value="actionable">Ação necessária</SelectItem>
+                <SelectItem value="resolved">Resolvido</SelectItem>
               </SelectContent>
             </Select>
           )}
@@ -2106,14 +2106,14 @@ export function Inbox() {
           icon={searchQuery.trim() ? Search : InboxIcon}
           message={
             searchQuery.trim()
-              ? "No inbox items match your search."
+              ? "Nenhum item corresponde à pesquisa."
               : tab === "mine"
-              ? "Inbox zero."
+              ? "Caixa de entrada vazia."
               : tab === "unread"
-              ? "No new inbox items."
+              ? "Nenhuma nova tarefa."
               : tab === "recent"
-                ? "No recent inbox items."
-                : "No inbox items match these filters."
+                ? "Nenhuma tarefa recente."
+                : "Nenhum item corresponde aos filtros."
           }
         />
       )}

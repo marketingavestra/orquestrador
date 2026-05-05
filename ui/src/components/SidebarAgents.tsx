@@ -62,12 +62,12 @@ function SidebarAgentItem({
   const isActive = activeAgentId === routeRef;
   const isPaused = agent.status === "paused";
   const isBudgetPaused = isPaused && agent.pauseReason === "budget";
-  const pauseResumeLabel = isPaused ? "Resume agent" : "Pause agent";
+  const pauseResumeLabel = isPaused ? "Retomar agente" : "Pausar agente";
   const pauseResumeDisabled = disabled || agent.status === "pending_approval" || isBudgetPaused;
   const pauseResumeDisabledLabel = disabled
-    ? "Updating..."
+    ? "Atualizando..."
     : isBudgetPaused
-      ? "Budget paused"
+      ? "Orçamento pausado"
       : pauseResumeLabel;
 
   return (
@@ -100,7 +100,7 @@ function SidebarAgentItem({
             ) : null}
             {runCount > 0 ? (
               <span className="text-[11px] font-medium text-blue-600 dark:text-blue-400">
-                {runCount} live
+                {runCount} ativo
               </span>
             ) : null}
           </span>
@@ -132,7 +132,7 @@ function SidebarAgentItem({
               }}
             >
               <Pencil className="size-4" />
-              <span>Edit agent</span>
+              <span>Editar agente</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
@@ -230,14 +230,14 @@ export function SidebarAgents() {
         queryClient.invalidateQueries({ queryKey: queryKeys.agents.detail(agentRouteRef(agent)) }),
       ]);
       pushToast({
-        title: action === "pause" ? "Agent paused" : "Agent resumed",
+        title: action === "pause" ? "Agente pausado" : "Agente retomado",
         body: agent.name,
         tone: "success",
       });
     },
     onError: (error, { agent, action }) => {
       pushToast({
-        title: action === "pause" ? "Could not pause agent" : "Could not resume agent",
+        title: action === "pause" ? "Não foi possível pausar o agente" : "Não foi possível retomar o agente",
         body: error instanceof Error ? error.message : agent.name,
         tone: "error",
       });
@@ -263,7 +263,7 @@ export function SidebarAgents() {
               )}
             />
             <span className="text-[10px] font-medium uppercase tracking-widest font-mono text-muted-foreground/60">
-              Agents
+              Agentes
             </span>
           </CollapsibleTrigger>
           <button
@@ -272,7 +272,7 @@ export function SidebarAgents() {
               openNewAgent();
             }}
             className="flex items-center justify-center h-4 w-4 rounded text-muted-foreground/60 hover:text-foreground hover:bg-accent/50 transition-colors"
-            aria-label="New agent"
+            aria-label="Novo agente"
           >
             <Plus className="h-3 w-3" />
           </button>

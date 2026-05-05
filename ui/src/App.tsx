@@ -51,6 +51,12 @@ import { CliAuthPage } from "./pages/CliAuth";
 import { InviteLandingPage } from "./pages/InviteLanding";
 import { JoinRequestQueue } from "./pages/JoinRequestQueue";
 import { NotFoundPage } from "./pages/NotFound";
+import { InstagramConcorrentes } from "./pages/InstagramConcorrentes";
+import { InstagramMontagem } from "./pages/InstagramMontagem";
+import { InstagramICP } from "./pages/InstagramICP";
+import { InstagramCriacao } from "./pages/InstagramCriacao";
+import { InstagramDashboard } from "./pages/InstagramDashboard";
+import { InstagramTarefas } from "./pages/InstagramTarefas";
 import { useCompany } from "./context/CompanyContext";
 import { useDialogActions } from "./context/DialogContext";
 import { loadLastInboxTab } from "./lib/inbox";
@@ -126,6 +132,12 @@ function boardRoutes() {
       <Route path="inbox/all" element={<Inbox />} />
       <Route path="inbox/requests" element={<JoinRequestQueue />} />
       <Route path="inbox/new" element={<Navigate to="/inbox/mine" replace />} />
+      <Route path="concorrentes" element={<InstagramConcorrentes />} />
+      <Route path="montagem" element={<InstagramMontagem />} />
+      <Route path="icp" element={<InstagramICP />} />
+      <Route path="criacao" element={<InstagramCriacao />} />
+      <Route path="dashboard-instagram" element={<InstagramDashboard />} />
+      <Route path="tarefas" element={<InstagramTarefas />} />
       <Route path="u/:userSlug" element={<UserProfile />} />
       <Route path="design-guide" element={<DesignGuide />} />
       <Route path="instance/settings/adapters" element={<AdapterManager />} />

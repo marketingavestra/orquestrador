@@ -12,6 +12,11 @@ import {
   Repeat,
   GitBranch,
   Settings,
+  Instagram,
+  Brain,
+  Sparkles,
+  BarChart2,
+  ListChecks,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { SidebarSection } from "./SidebarSection";
@@ -77,12 +82,12 @@ export function Sidebar() {
             className="flex items-center gap-2.5 px-3 py-2 text-[13px] font-medium text-muted-foreground hover:bg-accent/50 hover:text-foreground transition-colors"
           >
             <SquarePen className="h-4 w-4 shrink-0" />
-            <span className="truncate">New Issue</span>
+            <span className="truncate">Nova Tarefa</span>
           </button>
-          <SidebarNavItem to="/dashboard" label="Dashboard" icon={LayoutDashboard} liveCount={liveRunCount} />
+          <SidebarNavItem to="/dashboard" label="Painel" icon={LayoutDashboard} liveCount={liveRunCount} />
           <SidebarNavItem
             to="/inbox"
-            label="Inbox"
+            label="Caixa de Entrada"
             icon={Inbox}
             badge={inboxBadge.inbox}
             badgeTone={inboxBadge.failedRuns > 0 ? "danger" : "default"}
@@ -97,12 +102,12 @@ export function Sidebar() {
           />
         </div>
 
-        <SidebarSection label="Work">
-          <SidebarNavItem to="/issues" label="Issues" icon={CircleDot} />
-          <SidebarNavItem to="/routines" label="Routines" icon={Repeat} />
-          <SidebarNavItem to="/goals" label="Goals" icon={Target} />
+        <SidebarSection label="Trabalho">
+          <SidebarNavItem to="/issues" label="Tarefas" icon={CircleDot} />
+          <SidebarNavItem to="/routines" label="Rotinas" icon={Repeat} />
+          <SidebarNavItem to="/goals" label="Metas" icon={Target} />
           {showWorkspacesLink ? (
-            <SidebarNavItem to="/workspaces" label="Workspaces" icon={GitBranch} />
+            <SidebarNavItem to="/workspaces" label="Espaços de Trabalho" icon={GitBranch} />
           ) : null}
         </SidebarSection>
 
@@ -110,12 +115,21 @@ export function Sidebar() {
 
         <SidebarAgents />
 
-        <SidebarSection label="Company">
-          <SidebarNavItem to="/org" label="Org" icon={Network} />
-          <SidebarNavItem to="/skills" label="Skills" icon={Boxes} />
-          <SidebarNavItem to="/costs" label="Costs" icon={DollarSign} />
-          <SidebarNavItem to="/activity" label="Activity" icon={History} />
-          <SidebarNavItem to="/company/settings" label="Settings" icon={Settings} />
+        <SidebarSection label="Instagram Automação">
+          <SidebarNavItem to="/instagram/concorrentes" label="Concorrentes" icon={Instagram} />
+          <SidebarNavItem to="/instagram/montagem" label="Montagem" icon={Brain} />
+          <SidebarNavItem to="/instagram/icp" label="ICP" icon={Target} />
+          <SidebarNavItem to="/instagram/criacao" label="Criação" icon={Sparkles} />
+          <SidebarNavItem to="/instagram/dashboard" label="Dashboard & Análise" icon={BarChart2} />
+          <SidebarNavItem to="/instagram/tarefas" label="Acompanhamento" icon={ListChecks} />
+        </SidebarSection>
+
+        <SidebarSection label="Empresa">
+          <SidebarNavItem to="/org" label="Organização" icon={Network} />
+          <SidebarNavItem to="/skills" label="Habilidades" icon={Boxes} />
+          <SidebarNavItem to="/costs" label="Custos" icon={DollarSign} />
+          <SidebarNavItem to="/activity" label="Atividades" icon={History} />
+          <SidebarNavItem to="/company/settings" label="Configurações" icon={Settings} />
         </SidebarSection>
 
         <PluginSlotOutlet
